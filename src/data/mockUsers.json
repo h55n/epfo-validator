@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "uan": "100673291847",
+      "password": "Demo@1234",
+      "memberName": "Ramesh Kumar Sharma",
+      "aadhaarName": "Ramesh K. Sharma",
+      "dob": {
+        "epf": "15/08/1966",
+        "aadhaar": "15/08/1966",
+        "display": "15 August 1966"
+      },
+      "dateOfJoining": "15/03/1994",
+      "establishmentName": "Tata Motors Ltd., Pune",
+      "establishmentCode": "MH/PUN/0012847",
+      "epfoRegionalOffice": "Pune Regional Office",
+      "pfBalance": 247830,
+      "employerExitDate": "31/03/2026",
+      "exitUpdated": true,
+      "bankAccount": {
+        "maskedNumber": "XXXX XXXX 4821",
+        "bankName": "State Bank of India",
+        "ifsc": "SBIN0001234",
+        "kycVerified": true,
+        "kycApprovedBy": "Employer"
+      },
+      "scenario": "NAME_MISMATCH_INITIAL",
+      "claimHistory": []
+    },
+    {
+      "id": "user2",
+      "uan": "100891234567",
+      "password": "Demo@1234",
+      "memberName": "Fatima Begum Shaikh",
+      "aadhaarName": "Fatima Shaikh",
+      "dob": {
+        "epf": "22/11/1988",
+        "aadhaar": "22/11/1988",
+        "display": "22 November 1988"
+      },
+      "dateOfJoining": "12/06/2015",
+      "establishmentName": "Wipro BPO Solutions, Mumbai",
+      "establishmentCode": "MH/MUM/0089234",
+      "epfoRegionalOffice": "Mumbai Regional Office",
+      "pfBalance": 183450,
+      "employerExitDate": null,
+      "exitUpdated": false,
+      "bankAccount": {
+        "maskedNumber": "XXXX XXXX 9034",
+        "bankName": "HDFC Bank",
+        "ifsc": "HDFC0002345",
+        "kycVerified": false,
+        "kycApprovedBy": null
+      },
+      "scenario": "EMPLOYER_EXIT_AND_BANK_KYC",
+      "claimHistory": []
+    },
+    {
+      "id": "user3",
+      "uan": "100334455678",
+      "password": "Demo@1234",
+      "memberName": "Vijay Ramrao Patil",
+      "aadhaarName": "Vijay Ramrao Patil",
+      "dob": {
+        "epf": "04/06/1978",
+        "aadhaar": "04/06/1978",
+        "display": "4 June 1978"
+      },
+      "dateOfJoining": "01/08/2001",
+      "establishmentName": "Reliance Industries Ltd., Nagpur",
+      "establishmentCode": "MH/NAG/0034521",
+      "epfoRegionalOffice": "Nagpur Regional Office",
+      "pfBalance": 512000,
+      "employerExitDate": "28/02/2026",
+      "exitUpdated": true,
+      "bankAccount": {
+        "maskedNumber": "XXXX XXXX 7761",
+        "bankName": "Bank of Baroda",
+        "ifsc": "BARB0NAGPUR",
+        "kycVerified": true,
+        "kycApprovedBy": "Employer"
+      },
+      "scenario": "ALL_CLEAR",
+      "claimHistory": []
+    }
+  ]
+}
