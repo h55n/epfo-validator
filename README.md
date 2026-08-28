@@ -1,75 +1,96 @@
-# EPFO PF Claim Pre-Validator
+<div align="center">
 
-A rebuilt EPFO portal that runs 4 automatic pre-validation checks before any PF claim is submitted, tells the member exactly what will cause rejection, and generates the specific document needed to fix it.
+# 🚀 EPFO PF Claim Pre-Validator
 
-> **Hackathon Prototype**  
-> Independent project — Not affiliated with EPFO or the Government of India.
+<p align="center">
+  <a href="https://epfo-validator.vercel.app"><strong>Live Demo</strong></a> |
+  <a href="https://youtu.be/LDabAstD2R0"><strong>Watch Video</strong></a>
+</p>
 
-## Workflow Demo
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
+</p>
+
+A rebuilt EPFO portal that runs automatic pre-validation checks **before** any PF claim is submitted, tells the member exactly what will cause rejection, and generates the specific document needed to fix it. Built for the **Build What Moves India 2026** Hackathon.
+
+</div>
+
+---
+
+## 📺 Project Walkthrough
+
+[![Watch the video](https://img.youtube.com/vi/LDabAstD2R0/maxresdefault.jpg)](https://youtu.be/LDabAstD2R0)
+
+---
+
+## ⚡ Core Features
+
+| Feature | Description |
+|---------|-------------|
+| **Smart Pre-validation** | Runs 4 automated checks (Name Match, DOB, Exit Date, Bank KYC) *before* submission, intercepting common rejection causes instantly. |
+| **AI Name Matching** | Uses GPT-4.5 fuzzy matching to compare EPF records against Aadhaar, accommodating minor spelling variations that usually trigger manual rejection. |
+| **Auto-Document Generation** | Automatically drafts required legal documents (e.g., Joint Declaration) using `jsPDF` based on the specific failure reason. |
+| **Actionable Resolution** | Replaces generic rejection codes with plain-language explanations, numbered fix steps, and direct links to official EPFiGMS portals. |
+| **Accessible & Bilingual** | Modern, mobile-first design with English and Hindi support, completely replacing the clunky government interface. |
+| **Secure Architecture** | Client-side execution with sensitive AI operations routed securely through Vercel Serverless Functions. |
+
+---
+
+## 🛠️ The Problem vs The Solution
+
+**The Problem:** In 2024-25, 174 lakh PF claims were rejected — 1 in every 5. The current portal rejects with a generic code (like "Name Mismatch"). No explanation. No fix path. Workers are forced to visit EPFO offices multiple times, often losing wages just to figure out why they were rejected.
+
+**The Solution:** A pre-validation layer inserted *before* submission. Instead of learning about a problem after rejection, members see exactly what is wrong and how to fix it in seconds. 
+
+---
+
+## 🎥 Workflow Demo
 
 ![App Workflow](./public/demo-workflow.gif)
 
-## The Problem
+---
 
-174 lakh PF claims were rejected in 2024-25 — 1 in every 5. The current EPFO portal rejects with a generic code. No explanation. No fix path. Workers often have to visit EPFO offices multiple times to figure out why.
+## 🚀 Quick Install (Local Setup)
 
-## The Solution
+1. **Clone the repository and install dependencies:**
+   ```bash
+   git clone https://github.com/h55n/epfo-validator.git
+   cd epfo-validator
+   npm install
+   ```
 
-A pre-validation layer inserted *before* submission — not after rejection.
+2. **Configure Environment:**
+   ```bash
+   cp .env.example .env.local
+   ```
+   *Add your `VITE_AI_PROVIDER` and `AI_API_KEY` to `.env.local`.*
 
-**4 automatic checks run before claiming:**
-1. **Name Match** — EPF records vs. Aadhaar (AI-powered fuzzy matching via GPT-4.5)
-2. **Date of Birth** — EPF records vs. Aadhaar
-3. **Employer Exit Date** — Ensuring the previous employer updated the UAN
-4. **Bank KYC** — Account is linked and employer-approved
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-**For each failure:** 
-You get a plain-language explanation + numbered fix steps + auto-generated documents (like a Joint Declaration, employer letter, or EPFiGMS complaint).
+---
 
-## Demo Accounts
+## 🔑 Demo Accounts
 
-| Account       | UAN           | Password   | Scenario              |
-|---------------|---------------|------------|-----------------------|
-| Ramesh Kumar  | 100673291847  | Demo@1234  | Name mismatch         |
-| Fatima Shaikh | 100891234567  | Demo@1234  | Multiple failures     |
-| Vijay Patil   | 100334455678  | Demo@1234  | All clear (happy path)|
+Use these mock accounts to test different validation scenarios on the live app or locally:
 
-## Quick Start (Local Setup)
+| Account Name  | UAN Number    | Password   | Expected Scenario               |
+|---------------|---------------|------------|---------------------------------|
+| Ramesh Kumar  | 100673291847  | Demo@1234  | Name mismatch (AI validation)   |
+| Fatima Shaikh | 100891234567  | Demo@1234  | Multiple failures (Exit Date)   |
+| Vijay Patil   | 100334455678  | Demo@1234  | All clear (Happy path)          |
 
-1. Clone the repository and install dependencies:
-\\ash
-npm install
-\
-2. Copy the environment template:
-\\ash
-cp .env.example .env.local
-\
-3. Add your \VITE_AI_PROVIDER\ and \AI_API_KEY\ to \.env.local\.
+---
 
-4. Start the development server:
-\\ash
-npm run dev
-\
-## Technologies Used
+## 👥 Team
 
-- **React & Vite**: Fast, modern frontend framework and build tool.
-- **Tailwind CSS v4**: Utility-first CSS for responsive, accessible styling.
-- **Framer Motion**: Smooth animations and fluid UI transitions.
-- **Zustand**: Lightweight global state management.
-- **React Router**: Client-side routing for the multi-step validation flow.
-- **jsPDF**: Client-side PDF generation for downloading resolution documents.
-- **GPT-4.5 (via Serverless API)**: AI model used to perform intelligent fuzzy matching (e.g., name comparisons) securely.
+Divided and developed equally by:
+- **MRUNMAYEE DAWARE**
+- **HASSAN REHMAN**
 
-## How It's Built
-
-1. **Client-Side Architecture**: The core application runs entirely in the browser. It simulates the EPFO process by passing mock user data through a strict rule engine (the Validation Engine).
-2. **AI Pre-validation**: Before submission, the app uses GPT-4.5 to intelligently compare records (like Name Matching). The AI call is routed securely through a Vercel Serverless Function proxy (\/api/ai\) to hide API keys from the browser.
-3. **Automated Document Generation**: When a mismatch is detected, the app automatically drafts the exact document required (e.g., a Joint Declaration) and generates a downloadable PDF directly on the client side using \jsPDF\.
-4. **Accessible UI/UX**: The interface replaces the clunky government portal with a modern, responsive, mobile-first design, featuring bilingual support (English/Hindi) and an accessible journey map.
-
-## Deployment
-
-Deploy seamlessly to Vercel:
-\\ash
-npx vercel --prod
-\Make sure to add \AI_API_KEY\ in Vercel → Settings → Environment Variables.
+> **Disclaimer:** This is an independent hackathon prototype and is not affiliated with the Employees' Provident Fund Organisation (EPFO) or the Government of India.
