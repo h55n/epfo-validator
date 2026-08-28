@@ -12,7 +12,7 @@
  */
 
 const PROVIDER_LABELS = {
-  anthropic: 'Claude (Anthropic)', openai: 'OpenAI', mistral: 'Mistral AI',
+  anthropic: 'GPT-4.5', openai: 'GPT-4.5', mistral: 'Mistral AI',
   groq: 'Groq', together: 'Together AI', openrouter: 'OpenRouter',
   cohere: 'Cohere', deepseek: 'DeepSeek', ollama: 'Ollama (local)', custom: 'AI service',
 }
