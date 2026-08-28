@@ -7,7 +7,7 @@ A rebuilt EPFO portal that runs 4 automatic pre-validation checks before any PF 
 
 ## Workflow Demo
 
-![App Workflow](./public/demo-workflow.webp)
+![App Workflow](./public/demo-workflow.gif)
 
 ## The Problem
 
@@ -50,13 +50,22 @@ cp .env.example .env.local
 \\ash
 npm run dev
 \
-## Tech Stack
+## Technologies Used
 
-* **Frontend:** React, Vite, Tailwind CSS v4, Framer Motion
-* **State Management:** Zustand, React Router
-* **Documents:** jsPDF
-* **AI Integration:** GPT-4.5 (or any configured provider) via Serverless function proxy
-* **Deployment:** Vercel
+- **React & Vite**: Fast, modern frontend framework and build tool.
+- **Tailwind CSS v4**: Utility-first CSS for responsive, accessible styling.
+- **Framer Motion**: Smooth animations and fluid UI transitions.
+- **Zustand**: Lightweight global state management.
+- **React Router**: Client-side routing for the multi-step validation flow.
+- **jsPDF**: Client-side PDF generation for downloading resolution documents.
+- **GPT-4.5 (via Serverless API)**: AI model used to perform intelligent fuzzy matching (e.g., name comparisons) securely.
+
+## How It's Built
+
+1. **Client-Side Architecture**: The core application runs entirely in the browser. It simulates the EPFO process by passing mock user data through a strict rule engine (the Validation Engine).
+2. **AI Pre-validation**: Before submission, the app uses GPT-4.5 to intelligently compare records (like Name Matching). The AI call is routed securely through a Vercel Serverless Function proxy (\/api/ai\) to hide API keys from the browser.
+3. **Automated Document Generation**: When a mismatch is detected, the app automatically drafts the exact document required (e.g., a Joint Declaration) and generates a downloadable PDF directly on the client side using \jsPDF\.
+4. **Accessible UI/UX**: The interface replaces the clunky government portal with a modern, responsive, mobile-first design, featuring bilingual support (English/Hindi) and an accessible journey map.
 
 ## Deployment
 
