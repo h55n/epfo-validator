@@ -94,3 +94,15 @@ Divided and developed equally by:
 - **HASSAN REHMAN**
 
 > **Disclaimer:** This is an independent hackathon prototype and is not affiliated with the Employees' Provident Fund Organisation (EPFO) or the Government of India.
+
+### Session configuration and offline tests
+
+Set `SESSION_SECRET` to a private, randomly generated value of at least 32
+characters in every hosted environment. Production (`NODE_ENV=production`)
+and Vercel requests fail closed if it is missing or too short. The known
+local-development fallback is never accepted there. Signed sessions require
+an integer issue timestamp in the past eight hours, not a future timestamp.
+
+Run `npm run test:api` for offline session-security tests. These use synthetic
+identifiers and test-only keys without calling any external provider. The
+Playwright UI suite remains available through `npm test`.
