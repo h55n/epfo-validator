@@ -2,7 +2,7 @@
   "name": "epfo-validator",
   "private": true,
   "version": "1.0.0",
-  "description": "EPFO PF Claim Pre-Validator — Hackathon prototype for Build What Moves India 2026",
+  "description": "EPFO PF Claim Pre-Validator \u2014 Hackathon prototype for Build What Moves India 2026",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,8 @@
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:chromium": "playwright test --project=chromium",
-    "test:install": "playwright install --with-deps chromium firefox"
+    "test:install": "playwright install --with-deps chromium firefox",
+    "test:api": "node --test tests/api/*.test.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",

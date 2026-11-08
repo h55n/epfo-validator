@@ -28,11 +28,18 @@ function fromB64url(str) {
   return Buffer.from(str, 'base64url')
 }
 
+function sessionSecret() {
+  const configured = process.env.SESSION_SECRET
+  const hosted = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL)
+  const secret = configured || (!hosted ? 'dev-fallback-session-secret-at-least-32-characters-long' : '')
+  if (secret.length < 32) throw new Error('SESSION_SECRET must be configured with at least 32 characters')
+  return secret
+}
+
 // ── Token creation ────────────────────────────────────────────────────────────
 
 export async function createSessionToken(payload) {
-  const secret = process.env.SESSION_SECRET || 'dev-fallback-session-secret-at-least-32-characters-long'
-  if (!secret || secret.length < 16) throw new Error('SESSION_SECRET not configured')
+  const secret = sessionSecret()
 
   const data = { ...payload, iat: Math.floor(Date.now() / 1000) }
   const enc   = new TextEncoder()
@@ -45,8 +52,8 @@ export async function createSessionToken(payload) {
 // ── Token verification ────────────────────────────────────────────────────────
 
 export async function verifySessionToken(token) {
-  const secret = process.env.SESSION_SECRET || 'dev-fallback-session-secret-at-least-32-characters-long'
-  if (!secret) return null
+  let secret
+  try { secret = sessionSecret() } catch { return null }
 
   const parts = typeof token === 'string' ? token.split('.') : []
   if (parts.length !== 2) return null
@@ -63,7 +70,8 @@ export async function verifySessionToken(token) {
     if (!valid) return null
     const data = JSON.parse(fromB64url(payloadB64).toString('utf8'))
     // Check expiry
-    if (data.iat && (Math.floor(Date.now() / 1000) - data.iat) > MAX_AGE_S) return null
+    const now = Math.floor(Date.now() / 1000)
+    if (!Number.isSafeInteger(data?.iat) || data.iat <= 0 || data.iat > now || now - data.iat > MAX_AGE_S) return null
     return data
   } catch {
     return null
